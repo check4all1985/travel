@@ -104,12 +104,27 @@ nav a.active {
 }
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-  color: white;
-  padding: 6rem 2rem;
-  text-align: center;
   position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero::before {
@@ -119,15 +134,18 @@ nav a.active {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
-  background-size: cover;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(59, 130, 246, 0.8));
+  z-index: 2;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   max-width: 800px;
   margin: 0 auto;
+  text-align: center;
+  color: white;
+  padding: 2rem;
 }
 
 .hero h2 {
@@ -184,12 +202,36 @@ main {
   background: var(--bg-primary);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
-  padding: 2rem;
-  text-align: center;
+  overflow: hidden;
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
   border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.package-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.package-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.package:hover .package-image img {
+  transform: scale(1.05);
+}
+
+.package-content {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .package::before {
@@ -200,6 +242,7 @@ main {
   right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  z-index: 1;
 }
 
 .package:hover {
@@ -212,12 +255,14 @@ main {
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--text-primary);
+  text-align: left;
 }
 
 .package p {
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  text-align: left;
 }
 
 .price {
@@ -227,6 +272,7 @@ main {
   color: var(--primary-color);
   margin: 1.5rem 0;
   position: relative;
+  text-align: left;
 }
 
 .price::before {
@@ -917,13 +963,16 @@ footer {
 .member-avatar {
   width: 80px;
   height: 80px;
-  background: var(--bg-tertiary);
   border-radius: 50%;
   margin: 0 auto 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
+  overflow: hidden;
+  border: 3px solid var(--border-color);
+}
+
+.member-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .team-member h3 {
@@ -1079,15 +1128,18 @@ footer {
 
 .destination-image {
   height: 200px;
-  background: var(--bg-tertiary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
+  overflow: hidden;
 }
 
-.image-placeholder {
-  opacity: 0.5;
+.destination-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.destination-card:hover .destination-image img {
+  transform: scale(1.05);
 }
 
 .destination-info {
