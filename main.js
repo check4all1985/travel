@@ -22,7 +22,7 @@ class TravelWebsite {
     // Initialize EmailJS with your service details
     // You need to sign up at https://www.emailjs.com/ to get these values
     (function() {
-      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+      emailjs.init("public_key_placeholder"); // Replace with your EmailJS public key
     })();
   }
 
@@ -331,7 +331,7 @@ class TravelWebsite {
       subject: form.subject.value,
       message: form.message.value,
       timestamp: new Date().toISOString(),
-      to_email: 'info@travelpackages.com' // Replace with your actual email
+      to_email: 'checkforall19851102@outlook.com' // Your email address
     };
 
     // Create formatted contact information
@@ -385,7 +385,7 @@ class TravelWebsite {
       };
 
       // Send email using EmailJS
-      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+      emailjs.send('service_placeholder', 'template_placeholder', templateParams)
         .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
           resolve({ success: true, response: response });
@@ -405,7 +405,7 @@ Message: ${formData.message}
 Submitted: ${new Date(formData.timestamp).toLocaleString()}
           `.trim());
 
-          const mailtoLink = `mailto:your-email@example.com?subject=${emailSubject}&body=${emailBody}`;
+          const mailtoLink = `mailto:checkforall19851102@outlook.com?subject=${emailSubject}&body=${emailBody}`;
           window.location.href = mailtoLink;
           
           setTimeout(() => {
