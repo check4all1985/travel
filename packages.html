@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Packages - Explore the World</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1 class="logo">TravelWorld</h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="packages">
+        <div class="container">
+            <h2>Our Travel Packages</h2>
+            <div class="filter">
+                <label for="destination-filter">Filter by Destination:</label>
+                <select id="destination-filter">
+                    <option value="all">All</option>
+                    <option value="europe">Europe</option>
+                    <option value="asia">Asia</option>
+                    <option value="america">America</option>
+                </select>
+            </div>
+            <div class="packages-grid" id="packages-grid">
+                <div class="package-card" data-destination="europe">
+                    <img src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=400&h=200&fit=crop" alt="Paris Getaway">
+                    <h3>Paris Getaway</h3>
+                    <p>Experience the romance of Paris with Eiffel Tower and Louvre visits. 5 days, 4 nights.</p>
+                    <p class="price">$1,200</p>
+                    <button class="btn" onclick="openBookingModal('Paris Getaway')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="asia">
+                    <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=400&h=200&fit=crop" alt="Bali Paradise">
+                    <h3>Bali Paradise</h3>
+                    <p>Relax on pristine beaches and explore ancient temples. 7 days, 6 nights.</p>
+                    <p class="price">$950</p>
+                    <button class="btn" onclick="openBookingModal('Bali Paradise')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="asia">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=200&fit=crop" alt="Tokyo Adventure">
+                    <h3>Tokyo Adventure</h3>
+                    <p>Immerse yourself in the vibrant culture of Tokyo. 6 days, 5 nights.</p>
+                    <p class="price">$1,500</p>
+                    <button class="btn" onclick="openBookingModal('Tokyo Adventure')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1449034446853-66c861e1e6c0?w=400&h=200&fit=crop" alt="Los Angeles Adventure">
+                    <h3>Los Angeles Adventure</h3>
+                    <p>Experience Hollywood glamour and sunny beaches. 5 days, 4 nights.</p>
+                    <p class="price">$1,300</p>
+                    <button class="btn" onclick="openBookingModal('Los Angeles Adventure')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?w=400&h=200&fit=crop" alt="Miami Beach Getaway">
+                    <h3>Miami Beach Getaway</h3>
+                    <p>Vibrant nightlife and beautiful beaches in South Beach. 4 days, 3 nights.</p>
+                    <p class="price">$900</p>
+                    <button class="btn" onclick="openBookingModal('Miami Beach Getaway')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=200&fit=crop" alt="San Francisco Explorer">
+                    <h3>San Francisco Explorer</h3>
+                    <p>Golden Gate Bridge, Alcatraz, and cable car rides. 5 days, 4 nights.</p>
+                    <p class="price">$1,400</p>
+                    <button class="btn" onclick="openBookingModal('San Francisco Explorer')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=200&fit=crop" alt="Las Vegas Spectacular">
+                    <h3>Las Vegas Spectacular</h3>
+                    <p>Entertainment capital with shows and casinos. 3 days, 2 nights.</p>
+                    <p class="price">$700</p>
+                    <button class="btn" onclick="openBookingModal('Las Vegas Spectacular')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=400&h=200&fit=crop" alt="Chicago City Tour">
+                    <h3>Chicago City Tour</h3>
+                    <p>Architecture, deep-dish pizza, and Lake Michigan views. 4 days, 3 nights.</p>
+                    <p class="price">$850</p>
+                    <button class="btn" onclick="openBookingModal('Chicago City Tour')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=400&h=200&fit=crop" alt="Orlando Theme Parks">
+                    <h3>Orlando Theme Parks</h3>
+                    <p>Magic Kingdom, Epcot, and Disney adventures. 5 days, 4 nights.</p>
+                    <p class="price">$1,100</p>
+                    <button class="btn" onclick="openBookingModal('Orlando Theme Parks')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop" alt="Boston Historical Tour">
+                    <h3>Boston Historical Tour</h3>
+                    <p>Freedom Trail, Harvard, and colonial history. 4 days, 3 nights.</p>
+                    <p class="price">$950</p>
+                    <button class="btn" onclick="openBookingModal('Boston Historical Tour')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1617581629397-a72507c3de9e?w=400&h=200&fit=crop" alt="Washington D.C. Discovery">
+                    <h3>Washington D.C. Discovery</h3>
+                    <p>National monuments, Smithsonian museums, and Capitol Hill. 4 days, 3 nights.</p>
+                    <p class="price">$900</p>
+                    <button class="btn" onclick="openBookingModal('Washington D.C. Discovery')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=200&fit=crop" alt="Seattle Pacific Northwest">
+                    <h3>Seattle Pacific Northwest</h3>
+                    <p>Space Needle, Pike Place Market, and coffee culture. 4 days, 3 nights.</p>
+                    <p class="price">$1,000</p>
+                    <button class="btn" onclick="openBookingModal('Seattle Pacific Northwest')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="america">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=200&fit=crop" alt="Hawaii Island Paradise">
+                    <h3>Hawaii Island Paradise</h3>
+                    <p>Volcanoes, beaches, and aloha spirit on Big Island. 7 days, 6 nights.</p>
+                    <p class="price">$1,800</p>
+                    <button class="btn" onclick="openBookingModal('Hawaii Island Paradise')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="europe">
+                    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=200&fit=crop" alt="Rome Historical Tour">
+                    <h3>Rome Historical Tour</h3>
+                    <p>Walk through ancient history in the Eternal City. 5 days, 4 nights.</p>
+                    <p class="price">$1,100</p>
+                    <button class="btn" onclick="openBookingModal('Rome Historical Tour')">Book Now</button>
+                </div>
+                <div class="package-card" data-destination="asia">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&h=200&fit=crop" alt="Dubai Luxury Experience">
+                    <h3>Dubai Luxury Experience</h3>
+                    <p>Indulge in luxury with desert safaris and Burj Khalifa views. 6 days, 5 nights.</p>
+                    <p class="price">$2,000</p>
+                    <button class="btn" onclick="openBookingModal('Dubai Luxury Experience')">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 TravelWorld. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBookingModal()">&times;</span>
+            <h2>Book Your Package</h2>
+            <form id="booking-form">
+                <label for="package-name">Selected Package:</label>
+                <input type="text" id="package-name" name="package" readonly>
+                <label for="traveler-name">Your Name:</label>
+                <input type="text" id="traveler-name" name="name" placeholder="Your Name" required>
+                <label for="traveler-email">Your Email:</label>
+                <input type="email" id="traveler-email" name="email" placeholder="Your Email" required>
+                <label for="travel-date">Travel Date:</label>
+                <input type="date" id="travel-date" name="date" placeholder="Travel Date" required>
+                <label for="num-travelers">Number of Travelers:</label>
+                <input type="number" id="num-travelers" name="travelers" placeholder="Number of Travelers" min="1" required>
+                <button type="submit" class="btn">Submit Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

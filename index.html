@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Packages - Explore the World</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1 class="logo">TravelWorld</h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Discover Your Next Adventure</h2>
+            <p>Explore breathtaking destinations with our curated travel packages.</p>
+            <a href="packages.html" class="btn">View Packages</a>
+        </div>
+    </section>
+
+    <section id="featured-packages">
+        <div class="container">
+            <h2>Featured Packages</h2>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=400&h=200&fit=crop" alt="Paris Getaway">
+                    <h3>Paris Getaway</h3>
+                    <p>Experience the romance of Paris with Eiffel Tower and Louvre visits.</p>
+                    <p class="price">$1,200</p>
+                    <button class="btn" onclick="openBookingModal('Paris Getaway')">Book Now</button>
+                </div>
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=400&h=200&fit=crop" alt="Bali Paradise">
+                    <h3>Bali Paradise</h3>
+                    <p>Relax on pristine beaches and explore ancient temples.</p>
+                    <p class="price">$950</p>
+                    <button class="btn" onclick="openBookingModal('Bali Paradise')">Book Now</button>
+                </div>
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=200&fit=crop" alt="Tokyo Adventure">
+                    <h3>Tokyo Adventure</h3>
+                    <p>Immerse yourself in the vibrant culture of Tokyo.</p>
+                    <p class="price">$1,500</p>
+                    <button class="btn" onclick="openBookingModal('Tokyo Adventure')">Book Now</button>
+                </div>
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1449034446853-66c861e1e6c0?w=400&h=200&fit=crop" alt="Los Angeles Adventure">
+                    <h3>Los Angeles Adventure</h3>
+                    <p>Experience Hollywood glamour and sunny beaches.</p>
+                    <p class="price">$1,300</p>
+                    <button class="btn" onclick="openBookingModal('Los Angeles Adventure')">Book Now</button>
+                </div>
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?w=400&h=200&fit=crop" alt="Miami Beach Getaway">
+                    <h3>Miami Beach Getaway</h3>
+                    <p>Vibrant nightlife and beautiful beaches in South Beach.</p>
+                    <p class="price">$900</p>
+                    <button class="btn" onclick="openBookingModal('Miami Beach Getaway')">Book Now</button>
+                </div>
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=200&fit=crop" alt="San Francisco Explorer">
+                    <h3>San Francisco Explorer</h3>
+                    <p>Golden Gate Bridge, Alcatraz, and cable car rides.</p>
+                    <p class="price">$1,400</p>
+                    <button class="btn" onclick="openBookingModal('San Francisco Explorer')">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>We specialize in creating unforgettable travel experiences tailored to your dreams. With years of expertise, we ensure every journey is seamless and memorable.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <label for="contact-name">Your Name:</label>
+                <input type="text" id="contact-name" name="name" placeholder="Your Name" required>
+                <label for="contact-email">Your Email:</label>
+                <input type="email" id="contact-email" name="email" placeholder="Your Email" required>
+                <label for="contact-message">Your Message:</label>
+                <textarea id="contact-message" name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 TravelWorld. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBookingModal()">&times;</span>
+            <h2>Book Your Package</h2>
+            <form id="booking-form">
+                <label for="package-name">Selected Package:</label>
+                <input type="text" id="package-name" name="package" readonly>
+                <label for="traveler-name">Your Name:</label>
+                <input type="text" id="traveler-name" name="name" placeholder="Your Name" required>
+                <label for="traveler-email">Your Email:</label>
+                <input type="email" id="traveler-email" name="email" placeholder="Your Email" required>
+                <label for="travel-date">Travel Date:</label>
+                <input type="date" id="travel-date" name="date" placeholder="Travel Date" required>
+                <label for="num-travelers">Number of Travelers:</label>
+                <input type="number" id="num-travelers" name="travelers" placeholder="Number of Travelers" min="1" required>
+                <button type="submit" class="btn">Submit Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
