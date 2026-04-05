@@ -331,7 +331,7 @@ class TravelWebsite {
       subject: form.subject.value,
       message: form.message.value,
       timestamp: new Date().toISOString(),
-      to_email: 'checkforall19851102@outlook.com' // Your email address
+      to_email: 'casagleam1985@gmail.com' // Your email address
     };
 
     // Create formatted contact information
@@ -405,7 +405,7 @@ Message: ${formData.message}
 Submitted: ${new Date(formData.timestamp).toLocaleString()}
           `.trim());
 
-          const mailtoLink = `mailto:checkforall19851102@outlook.com?subject=${emailSubject}&body=${emailBody}`;
+          const mailtoLink = `mailto:casagleam1985@gmail.com?subject=${emailSubject}&body=${emailBody}`;
           window.location.href = mailtoLink;
           
           setTimeout(() => {
