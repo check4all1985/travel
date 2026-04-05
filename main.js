@@ -15,6 +15,15 @@ class TravelWebsite {
     this.setupFAQ();
     this.setupDestinationsSearch();
     this.updateCartUI();
+    this.initEmailJS();
+  }
+
+  initEmailJS() {
+    // Initialize EmailJS with your service details
+    // You need to sign up at https://www.emailjs.com/ to get these values
+    (function() {
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+    })();
   }
 
   // Mobile Menu Toggle
@@ -321,35 +330,89 @@ class TravelWebsite {
       postcode: form.postcode.value,
       subject: form.subject.value,
       message: form.message.value,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      to_email: 'info@travelpackages.com' // Replace with your actual email
     };
 
     // Create formatted contact information
     const fullAddress = `${formData.address}, ${formData.city}, ${formData.postcode}`;
     
-    // Generate email content
-    const emailContent = this.generateEmailContent(formData, fullAddress);
-    
-    // Display contact information for easy copying
-    this.displayContactInfo(formData, fullAddress, emailContent);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      if (successMessage) {
-        successMessage.classList.add('show');
-      }
-      
-      form.reset();
-      submitButton.textContent = 'Send Message';
-      submitButton.disabled = false;
-
-      // Hide success message after 5 seconds
-      setTimeout(() => {
+    // Send email using EmailJS service
+    this.sendEmail(formData, fullAddress)
+      .then(response => {
+        // Show success message
         if (successMessage) {
-          successMessage.classList.remove('show');
+          successMessage.classList.add('show');
         }
-      }, 5000);
-    }, 1500);
+        
+        form.reset();
+        submitButton.textContent = 'Send Message';
+        submitButton.disabled = false;
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          if (successMessage) {
+            successMessage.classList.remove('show');
+          }
+        }, 5000);
+
+        this.showNotification('Message sent successfully! We\'ll contact you soon.');
+      })
+      .catch(error => {
+        // Fallback to modal display if email fails
+        console.error('Email sending failed:', error);
+        this.displayContactInfo(formData, fullAddress, this.generateEmailContent(formData, fullAddress));
+        
+        submitButton.textContent = 'Send Message';
+        submitButton.disabled = false;
+        
+        this.showNotification('Email service unavailable. Please copy the contact information.');
+      });
+  }
+
+  sendEmail(formData, fullAddress) {
+    return new Promise((resolve, reject) => {
+      // EmailJS configuration
+      const templateParams = {
+        to_name: 'Travel Packages Team',
+        from_name: formData.name,
+        from_email: formData.email,
+        from_phone: formData.phone || 'Not provided',
+        from_address: fullAddress,
+        subject: formData.subject,
+        message: formData.message,
+        timestamp: new Date(formData.timestamp).toLocaleString()
+      };
+
+      // Send email using EmailJS
+      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          resolve({ success: true, response: response });
+        }, function(error) {
+          console.log('FAILED...', error);
+          // Fallback to mailto link
+          const emailSubject = encodeURIComponent(`New Travel Inquiry: ${formData.subject}`);
+          const emailBody = encodeURIComponent(`
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone || 'Not provided'}
+Address: ${fullAddress}
+
+Subject: ${formData.subject}
+Message: ${formData.message}
+
+Submitted: ${new Date(formData.timestamp).toLocaleString()}
+          `.trim());
+
+          const mailtoLink = `mailto:your-email@example.com?subject=${emailSubject}&body=${emailBody}`;
+          window.location.href = mailtoLink;
+          
+          setTimeout(() => {
+            resolve({ success: true, method: 'mailto' });
+          }, 1000);
+        });
+    });
   }
 
   generateEmailContent(data, fullAddress) {
