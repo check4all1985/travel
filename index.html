@@ -3,27 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Packages</title>
+  <title>Travel Packages - Discover Your Next Adventure</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Travel Packages</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="packages.html">Packages</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="header-container">
+      <h1>Travel Packages</h1>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <div class="cart-icon">
+          🛒
+          <span class="cart-count">0</span>
+        </div>
+      </nav>
+    </div>
   </header>
   <main>
     <section class="hero">
-      <h2>Discover Your Next Adventure!</h2>
-      <p>Find the best travel deals for your dream vacation.</p>
-      <a href="packages.html" class="cta">View Packages</a>
+      <div class="hero-content">
+        <h2>Discover Your Next Adventure!</h2>
+        <p>Find the best travel deals for your dream vacation. Explore amazing destinations and create unforgettable memories.</p>
+        <a href="packages.html" class="cta">View Packages</a>
+      </div>
+    </section>
+    
+    <section class="features">
+      <h2>Why Choose Us?</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">🌍</div>
+          <h3>Worldwide Destinations</h3>
+          <p>Explore over 50+ destinations across 6 continents with our curated travel packages.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💰</div>
+          <h3>Best Price Guarantee</h3>
+          <p>Find the same package for less and we'll match the price - guaranteed!</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>Expert Planning</h3>
+          <p>Our travel experts ensure every detail of your trip is perfectly planned.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🛡️</div>
+          <h3>Travel Protection</h3>
+          <p>Comprehensive travel insurance and 24/7 support for your peace of mind.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="popular-packages">
+      <h2>Popular Packages</h2>
+      <div class="packages">
+        <div class="package">
+          <h3>Family Fun in Europe</h3>
+          <p>7 nights, 4-star hotels, kids activities included.</p>
+          <span class="price">1,299</span>
+          <button class="add-to-cart" data-package="Family Fun in Europe" data-price="1299">Add to Cart</button>
+        </div>
+        <div class="package">
+          <h3>Adventure in Asia</h3>
+          <p>10 nights, guided tours, all meals included.</p>
+          <span class="price">1,799</span>
+          <button class="add-to-cart" data-package="Adventure in Asia" data-price="1799">Add to Cart</button>
+        </div>
+        <div class="package">
+          <h3>Luxury Caribbean Escape</h3>
+          <p>5 nights, all-inclusive, private beach access.</p>
+          <span class="price">2,499</span>
+          <button class="add-to-cart" data-package="Luxury Caribbean Escape" data-price="2499">Add to Cart</button>
+        </div>
+      </div>
     </section>
   </main>
   <footer>
-    <p>&copy; 2026 Travel Packages. All rights reserved.</p>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <p>&copy; 2026 Travel Packages. All rights reserved.</p>
+    </div>
   </footer>
+  
+  <div class="overlay"></div>
+  <div class="cart-sidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart">&times;</button>
+    </div>
+    <div class="cart-items">
+      <div class="cart-empty">Your cart is empty</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">Total: £0</div>
+      <button class="btn checkout-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+  
+  <script src="main.js"></script>
 </body>
 </html>

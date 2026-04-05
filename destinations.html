@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinations - Travel Packages</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Travel Packages</h1>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="destinations.html" class="active">Destinations</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <div class="cart-icon">
+          🛒
+          <span class="cart-count">0</span>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Explore Our Destinations</h2>
+        <p>Discover amazing places around the world with our curated travel experiences</p>
+      </div>
+    </section>
+    
+    <section class="destinations-search">
+      <div class="search-container">
+        <input type="text" id="destinationSearch" placeholder="Search destinations..." aria-label="Search destinations">
+        <select id="regionFilter" aria-label="Filter by region">
+          <option value="">All Regions</option>
+          <option value="europe">Europe</option>
+          <option value="asia">Asia</option>
+          <option value="caribbean">Caribbean</option>
+          <option value="americas">Americas</option>
+          <option value="africa">Africa</option>
+        </select>
+      </div>
+    </section>
+    
+    <section class="destinations-grid">
+      <div class="destination-card" data-region="europe" data-name="Paris, France">
+        <div class="destination-image">
+          <div class="image-placeholder">🗼</div>
+        </div>
+        <div class="destination-info">
+          <h3>Paris, France</h3>
+          <p class="destination-description">The City of Light awaits with iconic landmarks, world-class museums, and romantic atmosphere.</p>
+          <div class="destination-highlights">
+            <span class="highlight">Eiffel Tower</span>
+            <span class="highlight">Louvre Museum</span>
+            <span class="highlight">Seine River</span>
+          </div>
+          <div class="destination-meta">
+            <span class="price">From £999</span>
+            <span class="duration">4-7 days</span>
+          </div>
+          <button class="btn" onclick="window.location.href='packages.html'">View Packages</button>
+        </div>
+      </div>
+      
+      <div class="destination-card" data-region="asia" data-name="Tokyo, Japan">
+        <div class="destination-image">
+          <div class="image-placeholder">🗾</div>
+        </div>
+        <div class="destination-info">
+          <h3>Tokyo, Japan</h3>
+          <p class="destination-description">Experience the perfect blend of ancient tradition and cutting-edge modernity in Japan's vibrant capital.</p>
+          <div class="destination-highlights">
+            <span class="highlight">Mount Fuji</span>
+            <span class="highlight">Temples</span>
+            <span class="highlight">Technology</span>
+          </div>
+          <div class="destination-meta">
+            <span class="price">From £1,799</span>
+            <span class="duration">8-10 days</span>
+          </div>
+          <button class="btn" onclick="window.location.href='packages.html'">View Packages</button>
+        </div>
+      </div>
+      
+      <div class="destination-card" data-region="caribbean" data-name="Maldives">
+        <div class="destination-image">
+          <div class="image-placeholder">🏝️</div>
+        </div>
+        <div class="destination-info">
+          <h3>Maldives</h3>
+          <p class="destination-description">Paradise on earth with crystal-clear waters, pristine beaches, and luxury overwater villas.</p>
+          <div class="destination-highlights">
+            <span class="highlight">Overwater Villas</span>
+            <span class="highlight">Coral Reefs</span>
+            <span class="highlight">Spa Resorts</span>
+          </div>
+          <div class="destination-meta">
+            <span class="price">From £2,499</span>
+            <span class="duration">5-7 days</span>
+          </div>
+          <button class="btn" onclick="window.location.href='packages.html'">View Packages</button>
+        </div>
+      </div>
+      
+      <div class="destination-card" data-region="europe" data-name="Rome, Italy">
+        <div class="destination-image">
+          <div class="image-placeholder">🏛️</div>
+        </div>
+        <div class="destination-info">
+          <h3>Rome, Italy</h3>
+          <p class="destination-description">Walk through history in the Eternal City, where ancient ruins meet Renaissance art and Italian cuisine.</p>
+          <div class="destination-highlights">
+            <span class="highlight">Colosseum</span>
+            <span class="highlight">Vatican City</span>
+            <span class="highlight">Italian Food</span>
+          </div>
+          <div class="destination-meta">
+            <span class="price">From £1,299</span>
+            <span class="duration">5-7 days</span>
+          </div>
+          <button class="btn" onclick="window.location.href='packages.html'">View Packages</button>
+        </div>
+      </div>
+      
+      <div class="destination-card" data-region="asia" data-name="Bali, Indonesia">
+        <div class="destination-image">
+          <div class="image-placeholder">🌺</div>
+        </div>
+        <div class="destination-info">
+          <h3>Bali, Indonesia</h3>
+          <p class="destination-description">Discover tropical paradise with stunning beaches, ancient temples, and vibrant cultural experiences.</p>
+          <div class="destination-highlights">
+            <span class="highlight">Beaches</span>
+            <span class="highlight">Temples</span>
+            <span class="highlight">Rice Terraces</span>
+          </div>
+          <div class="destination-meta">
+            <span class="price">From £1,499</span>
+            <span class="duration">7-10 days</span>
+          </div>
+          <button class="btn" onclick="window.location.href='packages.html'">View Packages</button>
+        </div>
+      </div>
+      
+      <div class="destination-card" data-region="americas" data-name="New York, USA">
+        <div class="destination-image">
+          <div class="image-placeholder">🗽</div>
+        </div>
+        <div class="destination-info">
+          <h3>New York, USA</h3>
+          <p class="destination-description">Experience the energy of the Big Apple with iconic landmarks, world-class museums, and endless entertainment.</p>
+          <div class="destination-highlights">
+            <span class="highlight">Times Square</span>
+            <span class="highlight">Central Park</span>
+            <span class="highlight">Broadway</span>
+          </div>
+          <div class="destination-meta">
+            <span class="price">From £1,199</span>
+            <span class="duration">4-6 days</span>
+          </div>
+          <button class="btn" onclick="window.location.href='packages.html'">View Packages</button>
+        </div>
+      </div>
+      
+      <div class="destination-card" data-region="africa" data-name="Cape Town, South Africa">
+        <div class="destination-image">
+          <div class="image-placeholder">🏔️</div>
+        </div>
+        <div class="destination-info">
+          <h3>Cape Town, South Africa</h3>
+          <p class="destination-description">Where mountains meet the sea, offering stunning landscapes, rich history, and incredible wildlife experiences.</p>
+          <div class="destination-highlights">
+            <span class="highlight">Table Mountain</span>
+            <span class="highlight">Wine Regions</span>
+            <span class="highlight">Wildlife</span>
+          </div>
+          <div class="destination-meta">
+            <span class="price">From £1,899</span>
+            <span class="duration">8-10 days</span>
+          </div>
+          <button class="btn" onclick="window.location.href='packages.html'">View Packages</button>
+        </div>
+      </div>
+      
+      <div class="destination-card" data-region="caribbean" data-name="Barbados">
+        <div class="destination-image">
+          <div class="image-placeholder">🌴</div>
+        </div>
+        <div class="destination-info">
+          <h3>Barbados</h3>
+          <p class="destination-description">Caribbean charm with beautiful beaches, crystal-clear waters, and warm hospitality.</p>
+          <div class="destination-highlights">
+            <span class="highlight">Beaches</span>
+            <span class="highlight">Water Sports</span>
+            <span class="highlight">Local Culture</span>
+          </div>
+          <div class="destination-meta">
+            <span class="price">From £1,799</span>
+            <span class="duration">7-10 days</span>
+          </div>
+          <button class="btn" onclick="window.location.href='packages.html'">View Packages</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <p>&copy; 2026 Travel Packages. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <script src="main.js"></script>
+</body>
+</html>

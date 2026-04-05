@@ -3,43 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Packages</title>
+  <title>Our Packages - Travel Packages</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Travel Packages</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="packages.html">Packages</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="header-container">
+      <h1>Travel Packages</h1>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="packages.html" class="active">Packages</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <div class="cart-icon">
+          🛒
+          <span class="cart-count">0</span>
+        </div>
+      </nav>
+    </div>
   </header>
   <main>
-    <h2>Available Packages</h2>
+    <section class="packages-header">
+      <h2>Available Packages</h2>
+      <p>Choose from our carefully curated selection of travel packages designed to create unforgettable experiences.</p>
+      
+      <div class="package-filters">
+        <button class="filter-btn active" data-filter="all">All Packages</button>
+        <button class="filter-btn" data-filter="europe">Europe</button>
+        <button class="filter-btn" data-filter="asia">Asia</button>
+        <button class="filter-btn" data-filter="caribbean">Caribbean</button>
+        <button class="filter-btn" data-filter="luxury">Luxury</button>
+      </div>
+    </section>
+    
     <div class="packages">
-      <div class="package">
+      <div class="package" data-category="europe" data-price="1299">
         <h3>Family Fun in Europe</h3>
         <p>7 nights, 4-star hotels, kids activities included.</p>
-        <span class="price">£1,299</span>
-        <button>Book Now</button>
+        <ul class="package-features">
+          <li>Round-trip flights included</li>
+          <li>4-star hotel accommodations</li>
+          <li>Daily breakfast and dinner</li>
+          <li>Kids' club activities</li>
+          <li>Guided city tours</li>
+        </ul>
+        <span class="price">1,299</span>
+        <button class="add-to-cart" data-package="Family Fun in Europe" data-price="1299">Add to Cart</button>
       </div>
-      <div class="package">
+      
+      <div class="package" data-category="asia" data-price="1799">
         <h3>Adventure in Asia</h3>
         <p>10 nights, guided tours, all meals included.</p>
-        <span class="price">£1,799</span>
-        <button>Book Now</button>
+        <ul class="package-features">
+          <li>Round-trip flights included</li>
+          <li>5-star hotel accommodations</li>
+          <li>All meals included</li>
+          <li>Professional tour guide</li>
+          <li>Adventure activities</li>
+        </ul>
+        <span class="price">1,799</span>
+        <button class="add-to-cart" data-package="Adventure in Asia" data-price="1799">Add to Cart</button>
       </div>
-      <div class="package">
+      
+      <div class="package" data-category="caribbean luxury" data-price="2499">
         <h3>Luxury Caribbean Escape</h3>
         <p>5 nights, all-inclusive, private beach access.</p>
-        <span class="price">£2,499</span>
-        <button>Book Now</button>
+        <ul class="package-features">
+          <li>Round-trip flights included</li>
+          <li>Luxury beachfront villa</li>
+          <li>All-inclusive dining</li>
+          <li>Private beach access</li>
+          <li>Spa treatments included</li>
+        </ul>
+        <span class="price">2,499</span>
+        <button class="add-to-cart" data-package="Luxury Caribbean Escape" data-price="2499">Add to Cart</button>
+      </div>
+      
+      <div class="package" data-category="europe" data-price="999">
+        <h3>Romantic Paris Getaway</h3>
+        <p>4 nights, boutique hotel, city tours included.</p>
+        <ul class="package-features">
+          <li>Round-trip flights included</li>
+          <li>Boutique hotel in city center</li>
+          <li>Daily breakfast</li>
+          <li>Seine river cruise</li>
+          <li>Museum passes included</li>
+        </ul>
+        <span class="price">999</span>
+        <button class="add-to-cart" data-package="Romantic Paris Getaway" data-price="999">Add to Cart</button>
+      </div>
+      
+      <div class="package" data-category="asia" data-price="2199">
+        <h3>Tokyo Cultural Experience</h3>
+        <p>8 nights, traditional ryokans, cultural workshops.</p>
+        <ul class="package-features">
+          <li>Round-trip flights included</li>
+          <li>Traditional ryokan stays</li>
+          <li>Cultural workshops included</li>
+          <li>Local guided tours</li>
+          <li>JR Pass for travel</li>
+        </ul>
+        <span class="price">2,199</span>
+        <button class="add-to-cart" data-package="Tokyo Cultural Experience" data-price="2199">Add to Cart</button>
+      </div>
+      
+      <div class="package" data-category="luxury" data-price="3299">
+        <h3>Maldives Luxury Resort</h3>
+        <p>6 nights, overwater villa, all-inclusive luxury.</p>
+        <ul class="package-features">
+          <li>Round-trip flights included</li>
+          <li>Overwater villa accommodation</li>
+          <li>All-inclusive premium dining</li>
+          <li>Private butler service</li>
+          <li>Water sports equipment</li>
+        </ul>
+        <span class="price">3,299</span>
+        <button class="add-to-cart" data-package="Maldives Luxury Resort" data-price="3299">Add to Cart</button>
       </div>
     </div>
   </main>
   <footer>
-    <p>&copy; 2026 Travel Packages. All rights reserved.</p>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <p>&copy; 2026 Travel Packages. All rights reserved.</p>
+    </div>
   </footer>
+  
+  <div class="overlay"></div>
+  <div class="cart-sidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart">&times;</button>
+    </div>
+    <div class="cart-items">
+      <div class="cart-empty">Your cart is empty</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">Total: £0</div>
+      <button class="btn checkout-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+  
+  <script src="main.js"></script>
 </body>
 </html>
