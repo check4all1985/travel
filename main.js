@@ -263,11 +263,22 @@ class TravelWebsite {
       isValid = emailRegex.test(field.value);
     } else if (field.name === 'message' && field.value.length < 10) {
       isValid = false;
+    } else if (field.name === 'postcode' && field.value) {
+      // Basic UK postcode validation
+      const postcodeRegex = /^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$/i;
+      isValid = postcodeRegex.test(field.value);
     }
 
     if (errorElement) {
       if (!isValid) {
         errorElement.classList.add('show');
+        if (field.name === 'address') {
+          errorElement.textContent = 'Please enter your street address';
+        } else if (field.name === 'city') {
+          errorElement.textContent = 'Please enter your city';
+        } else if (field.name === 'postcode') {
+          errorElement.textContent = 'Please enter a valid postcode (e.g., SW1A 0AA)';
+        }
       } else {
         errorElement.classList.remove('show');
       }
@@ -300,6 +311,28 @@ class TravelWebsite {
     submitButton.textContent = 'Sending...';
     submitButton.disabled = true;
 
+    // Collect form data
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      address: form.address.value,
+      city: form.city.value,
+      postcode: form.postcode.value,
+      subject: form.subject.value,
+      message: form.message.value,
+      timestamp: new Date().toISOString()
+    };
+
+    // Create formatted contact information
+    const fullAddress = `${formData.address}, ${formData.city}, ${formData.postcode}`;
+    
+    // Generate email content
+    const emailContent = this.generateEmailContent(formData, fullAddress);
+    
+    // Display contact information for easy copying
+    this.displayContactInfo(formData, fullAddress, emailContent);
+    
     // Simulate form submission
     setTimeout(() => {
       if (successMessage) {
@@ -317,6 +350,110 @@ class TravelWebsite {
         }
       }, 5000);
     }, 1500);
+  }
+
+  generateEmailContent(data, fullAddress) {
+    return `
+NEW CONTACT INQUIRY - Travel Packages
+
+====================
+CLIENT INFORMATION
+====================
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone || 'Not provided'}
+Address: ${fullAddress}
+
+====================
+INQUIRY DETAILS
+====================
+Subject: ${data.subject}
+Message: ${data.message}
+Submitted: ${new Date(data.timestamp).toLocaleString()}
+
+====================
+QUICK REPLY OPTIONS
+====================
+Email: ${data.email}
+Phone: ${data.phone || 'Not provided'}
+Address: ${fullAddress}
+
+====================
+NEXT STEPS
+====================
+1. Contact client within 24 hours
+2. Check their inquiry subject: ${data.subject}
+3. Review their message for specific requirements
+4. Prepare relevant package information
+    `.trim();
+  }
+
+  displayContactInfo(data, fullAddress, emailContent) {
+    // Create a modal or display area with contact information
+    const contactModal = document.createElement('div');
+    contactModal.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      z-index: 10001;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+    `;
+
+    contactModal.innerHTML = `
+      <h3 style="margin: 0 0 1rem 0; color: var(--text-primary);">Client Contact Information</h3>
+      
+      <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+        <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-color);">Quick Contact Details</h4>
+        <p><strong>Name:</strong> ${data.name}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+        <p><strong>Address:</strong> ${fullAddress}</p>
+        <p><strong>Subject:</strong> ${data.subject}</p>
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-color);">Message:</h4>
+        <p style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; margin: 0;">${data.message}</p>
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-color);">Email Template (Click to Copy)</h4>
+        <textarea readonly style="width: 100%; height: 200px; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; font-family: monospace; font-size: 0.8rem;">${emailContent}</textarea>
+      </div>
+      
+      <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+        <button id="copyEmailBtn" style="background: var(--primary-color); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Copy Email</button>
+        <button id="closeModalBtn" style="background: var(--bg-tertiary); color: var(--text-primary); border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Close</button>
+      </div>
+    `;
+
+    document.body.appendChild(contactModal);
+
+    // Add copy functionality
+    document.getElementById('copyEmailBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(emailContent).then(() => {
+        this.showNotification('Email content copied to clipboard!');
+      });
+    });
+
+    // Add close functionality
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+      document.body.removeChild(contactModal);
+    });
+
+    // Auto-close after 30 seconds
+    setTimeout(() => {
+      if (document.body.contains(contactModal)) {
+        document.body.removeChild(contactModal);
+      }
+    }, 30000);
   }
 
   // Animations

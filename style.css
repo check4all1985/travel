@@ -352,6 +352,19 @@ button:active, .btn:active {
   margin-bottom: 1.5rem;
 }
 
+.form-group-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .form-group-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
 .contact-form label {
   display: block;
   margin-bottom: 0.5rem;
