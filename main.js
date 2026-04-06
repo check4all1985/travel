@@ -225,41 +225,24 @@ class TravelWebsite {
     });
   }
 
-  // Contact Form with Formspree AJAX - Custom Confirmation
+  // Contact Form with Formspree - Simple Working Approach
   setupContactForm() {
     const form = document.getElementById('contactForm');
     
     if (form) {
-      // Initialize Formspree with custom success handling
-      window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-      
-      formspree('initForm', { 
-        formElement: '#contactForm', 
-        formId: 'maqlaone',
-        onSuccess: () => {
-          // Hide default Formspree message
-          const defaultSuccess = document.querySelector('[data-fs-success]');
-          if (defaultSuccess) {
-            defaultSuccess.style.display = 'none';
-          }
-          
-          // Show our custom success message
-          const successMessage = document.getElementById('successMessage');
-          if (successMessage) {
-            successMessage.classList.add('show');
-            
-            // Hide after 10 seconds
-            setTimeout(() => {
-              successMessage.classList.remove('show');
-            }, 10000);
-          }
-          
-          this.showNotification('Message sent successfully! We\'ll contact you soon.');
-        },
-        onError: (error) => {
-          console.error('Formspree error:', error);
-          this.showNotification('Oops! Something went wrong. Please try again.');
-        }
+      form.addEventListener('submit', (e) => {
+        const submitButton = form.querySelector('button[type="submit"]');
+        
+        // Show loading state
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+        
+        // Let Formspree handle the submission
+        // Formspree will show its own confirmation page
+        setTimeout(() => {
+          submitButton.textContent = 'Send Message';
+          submitButton.disabled = false;
+        }, 3000);
       });
     }
   }
