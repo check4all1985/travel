@@ -19,10 +19,16 @@ class TravelWebsite {
   }
 
   initEmailJS() {
-    // Initialize EmailJS - you'll get your public key from EmailJS
-    (function() {
-      emailjs.init("XrJyObIeLv09W1bHq"); // Your EmailJS public key
-    })();
+    // Initialize EmailJS with better error handling
+    try {
+      (function() {
+        emailjs.init("XrJyObIeLv09W1bHq"); // Your EmailJS public key
+      })();
+      console.log('EmailJS initialized successfully');
+    } catch (error) {
+      console.error('EmailJS initialization failed:', error);
+      // Fallback to mailto if EmailJS fails
+    }
   }
 
   // Mobile Menu Toggle
@@ -371,6 +377,13 @@ class TravelWebsite {
 
   sendEmail(formData, fullAddress) {
     return new Promise((resolve, reject) => {
+      // Check if EmailJS is available
+      if (typeof emailjs === 'undefined') {
+        console.log('EmailJS not available, using mailto fallback');
+        this.useMailtoFallback(formData, fullAddress, resolve);
+        return;
+      }
+
       // EmailJS configuration
       const templateParams = {
         to_name: 'Travel Packages Team',
@@ -386,32 +399,53 @@ class TravelWebsite {
       // Send email using EmailJS
       emailjs.send('service_tf116od', 'template_isit39m', templateParams)
         .then(function(response) {
-          console.log('SUCCESS!', response.status, response.text);
+          console.log('EmailJS SUCCESS!', response.status, response.text);
           resolve({ success: true, response: response });
         }, function(error) {
-          console.log('FAILED...', error);
+          console.log('EmailJS FAILED, using fallback...', error);
           // Fallback to mailto link
-          const emailSubject = encodeURIComponent(`New Travel Inquiry: ${formData.subject}`);
-          const emailBody = encodeURIComponent(`
+          this.useMailtoFallback(formData, fullAddress, resolve);
+        }.bind(this));
+    });
+  }
+
+  useMailtoFallback(formData, fullAddress, resolve) {
+    const emailSubject = encodeURIComponent(`New Travel Inquiry: ${formData.subject}`);
+    const emailBody = encodeURIComponent(`
+NEW TRAVEL INQUIRY - Travel Packages Website
+
+====================
+CLIENT INFORMATION
+====================
 Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone || 'Not provided'}
 Address: ${fullAddress}
 
+====================
+INQUIRY DETAILS
+====================
 Subject: ${formData.subject}
 Message: ${formData.message}
 
+====================
+SUBMISSION DETAILS
+====================
 Submitted: ${new Date(formData.timestamp).toLocaleString()}
-          `.trim());
+Website: https://check4all1985.github.io/travel
 
-          const mailtoLink = `mailto:casagleam1985@gmail.com?subject=${emailSubject}&body=${emailBody}`;
-          window.location.href = mailtoLink;
-          
-          setTimeout(() => {
-            resolve({ success: true, method: 'mailto' });
-          }, 1000);
-        });
-    });
+====================
+ACTION REQUIRED
+====================
+Please contact this client within 24 hours regarding their travel inquiry.
+    `.trim());
+
+    const mailtoLink = `mailto:casagleam1985@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    window.location.href = mailtoLink;
+    
+    setTimeout(() => {
+      resolve({ success: true, method: 'mailto' });
+    }, 2000);
   }
 
   generateEmailContent(data, fullAddress) {
