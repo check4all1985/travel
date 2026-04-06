@@ -342,37 +342,33 @@ class TravelWebsite {
     // Create formatted contact information
     const fullAddress = `${formData.address}, ${formData.city}, ${formData.postcode}`;
     
-    // Send email using EmailJS service
+    // Show success message immediately
+    if (successMessage) {
+      successMessage.classList.add('show');
+    }
+    
+    // Reset form
+    form.reset();
+    submitButton.textContent = 'Send Message';
+    submitButton.disabled = false;
+
+    // Send email in background
     this.sendEmail(formData, fullAddress)
       .then(response => {
-        // Show success message
-        if (successMessage) {
-          successMessage.classList.add('show');
-        }
-        
-        form.reset();
-        submitButton.textContent = 'Send Message';
-        submitButton.disabled = false;
-
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-          if (successMessage) {
-            successMessage.classList.remove('show');
-          }
-        }, 5000);
-
+        console.log('Email sent:', response);
         this.showNotification('Message sent successfully! We\'ll contact you soon.');
       })
       .catch(error => {
-        // Fallback to modal display if email fails
         console.error('Email sending failed:', error);
-        this.displayContactInfo(formData, fullAddress, this.generateEmailContent(formData, fullAddress));
-        
-        submitButton.textContent = 'Send Message';
-        submitButton.disabled = false;
-        
         this.showNotification('Email service unavailable. Please copy the contact information.');
       });
+
+    // Hide success message after 10 seconds
+    setTimeout(() => {
+      if (successMessage) {
+        successMessage.classList.remove('show');
+      }
+    }, 10000);
   }
 
   sendEmail(formData, fullAddress) {
