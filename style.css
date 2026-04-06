@@ -396,7 +396,7 @@ button:active, .btn:active {
 }
 
 .form-error {
-  color: #dc2626;
+  color: var(--error-color);
   font-size: 0.875rem;
   margin-top: 0.25rem;
   display: none;
@@ -404,6 +404,51 @@ button:active, .btn:active {
 
 .form-error.show {
   display: block;
+}
+
+.success-message {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  margin-top: 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid #059669;
+  display: none;
+  animation: slideInUp 0.5s ease-out;
+}
+
+.success-message h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.success-message p {
+  margin: 0.5rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.success-message strong {
+  color: white;
+  font-weight: 600;
+}
+
+.success-message small {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .form-success {
