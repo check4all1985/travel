@@ -225,60 +225,39 @@ class TravelWebsite {
     });
   }
 
-  // Contact Form with Formspree - Custom Confirmation
+  // Contact Form with Formspree AJAX - Custom Confirmation
   setupContactForm() {
     const form = document.getElementById('contactForm');
     
     if (form) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Prevent Formspree redirect
-        
-        const submitButton = form.querySelector('button[type="submit"]');
-        const successMessage = document.getElementById('successMessage');
-        
-        // Show loading state
-        submitButton.textContent = 'Sending...';
-        submitButton.disabled = true;
-        
-        // Collect form data
-        const formData = new FormData(form);
-        
-        try {
-          // Submit to Formspree via fetch
-          const response = await fetch('https://formspree.io/f/maqlaone', {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'Accept': 'application/json'
-            }
-          });
-          
-          if (response.ok) {
-            // Show custom success message
-            if (successMessage) {
-              successMessage.classList.add('show');
-            }
-            
-            // Reset form
-            form.reset();
-            submitButton.textContent = 'Send Message';
-            submitButton.disabled = false;
-            
-            // Hide success message after 10 seconds
-            setTimeout(() => {
-              if (successMessage) {
-                successMessage.classList.remove('show');
-              }
-            }, 10000);
-            
-            this.showNotification('Message sent successfully! We\'ll contact you soon.');
-          } else {
-            throw new Error('Form submission failed');
+      // Initialize Formspree with custom success handling
+      window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+      
+      formspree('initForm', { 
+        formElement: '#contactForm', 
+        formId: 'maqlaone',
+        onSuccess: () => {
+          // Hide default Formspree message
+          const defaultSuccess = document.querySelector('[data-fs-success]');
+          if (defaultSuccess) {
+            defaultSuccess.style.display = 'none';
           }
-        } catch (error) {
-          console.error('Error submitting form:', error);
-          submitButton.textContent = 'Send Message';
-          submitButton.disabled = false;
+          
+          // Show our custom success message
+          const successMessage = document.getElementById('successMessage');
+          if (successMessage) {
+            successMessage.classList.add('show');
+            
+            // Hide after 10 seconds
+            setTimeout(() => {
+              successMessage.classList.remove('show');
+            }, 10000);
+          }
+          
+          this.showNotification('Message sent successfully! We\'ll contact you soon.');
+        },
+        onError: (error) => {
+          console.error('Formspree error:', error);
           this.showNotification('Oops! Something went wrong. Please try again.');
         }
       });

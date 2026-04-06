@@ -49,6 +49,9 @@
         </div>
         
         <form class="contact-form" id="contactForm" method="POST">
+          <div data-fs-success style="display: none;">Form submitted successfully!</div>
+          <div data-fs-error style="display: none;">Error submitting form!</div>
+          
           <div class="form-group">
             <label for="name">Full Name *</label>
             <input type="text" id="name" name="name" required>
@@ -142,6 +145,7 @@
     </div>
   </footer>
   
+  <script src="https://unpkg.com/@formspree/ajax@1"></script>
   <script src="main.js"></script>
 </body>
 </html>
