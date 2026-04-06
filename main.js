@@ -21,7 +21,7 @@ class TravelWebsite {
   initEmailJS() {
     // Initialize EmailJS - you'll get your public key from EmailJS
     (function() {
-      emailjs.init("YOUR_PUBLIC_KEY_HERE"); // Replace with your EmailJS public key
+      emailjs.init("XrJyObIeLv09W1bHq"); // Your EmailJS public key
     })();
   }
 
@@ -384,7 +384,7 @@ class TravelWebsite {
       };
 
       // Send email using EmailJS
-      emailjs.send('service_placeholder', 'template_placeholder', templateParams)
+      emailjs.send('service_tf116od', 'template_isit39m', templateParams)
         .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
           resolve({ success: true, response: response });
