@@ -19,10 +19,9 @@ class TravelWebsite {
   }
 
   initEmailJS() {
-    // Initialize EmailJS with your service details
-    // You need to sign up at https://www.emailjs.com/ to get these values
+    // Initialize EmailJS - you'll get your public key from EmailJS
     (function() {
-      emailjs.init("public_key_placeholder"); // Replace with your EmailJS public key
+      emailjs.init("YOUR_PUBLIC_KEY_HERE"); // Replace with your EmailJS public key
     })();
   }
 
