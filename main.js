@@ -225,14 +225,14 @@ class TravelWebsite {
     });
   }
 
-  // Contact Form with Formspree
+  // Contact Form with Formspree - Custom Confirmation
   setupContactForm() {
     const form = document.getElementById('contactForm');
     
     if (form) {
-      // Formspree will handle the submission automatically
-      // We just need to show success message
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent Formspree redirect
+        
         const submitButton = form.querySelector('button[type="submit"]');
         const successMessage = document.getElementById('successMessage');
         
@@ -240,27 +240,47 @@ class TravelWebsite {
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
         
-        // Formspree will handle submission, show success after a delay
-        setTimeout(() => {
-          // Show success message
-          if (successMessage) {
-            successMessage.classList.add('show');
-          }
+        // Collect form data
+        const formData = new FormData(form);
+        
+        try {
+          // Submit to Formspree via fetch
+          const response = await fetch('https://formspree.io/f/maqlaone', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
           
-          // Reset form
-          form.reset();
+          if (response.ok) {
+            // Show custom success message
+            if (successMessage) {
+              successMessage.classList.add('show');
+            }
+            
+            // Reset form
+            form.reset();
+            submitButton.textContent = 'Send Message';
+            submitButton.disabled = false;
+            
+            // Hide success message after 10 seconds
+            setTimeout(() => {
+              if (successMessage) {
+                successMessage.classList.remove('show');
+              }
+            }, 10000);
+            
+            this.showNotification('Message sent successfully! We\'ll contact you soon.');
+          } else {
+            throw new Error('Form submission failed');
+          }
+        } catch (error) {
+          console.error('Error submitting form:', error);
           submitButton.textContent = 'Send Message';
           submitButton.disabled = false;
-          
-          // Hide success message after 10 seconds
-          setTimeout(() => {
-            if (successMessage) {
-              successMessage.classList.remove('show');
-            }
-          }, 10000);
-          
-          this.showNotification('Message sent successfully! We\'ll contact you soon.');
-        }, 2000);
+          this.showNotification('Oops! Something went wrong. Please try again.');
+        }
       });
     }
   }
